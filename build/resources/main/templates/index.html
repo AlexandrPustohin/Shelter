@@ -10,5 +10,28 @@
 </head>
 <body>
 <h1>Приют для животных</h1>
+<div>
+    <table th:if="${listOfAnimals.size()>0}" class="table">
+
+        <thead class="thead-dark">
+        <tr>
+            <td>Тип животного</td>
+            <td>Пол животного</td>
+            <td>Дата поступления</td>
+            <td>Приметы</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="animal : ${listOfAnimals}">
+            <td th:text ="${animal.animalType}"></td>
+            <td th:text ="${animal.animalGender}"></td>
+            <td th:text ="${#calendars.format(animal.dateOfReception,'dd MMMM yyyy')}" />
+            <td th:text ="${animal.description}"></td>
+            <td><a class="btn btn-info"    th:href="@{'/update/?id='+${animal.id}}">изменить</a></td>
+            <td><a class="btn btn-info"    th:href="@{'/delete/?id='+${animal.id}}">удалить</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
