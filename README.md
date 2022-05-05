@@ -1,29 +1,21 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Тестовое задание приют для животных
 
-### What is this repository for? ###
+Необходимо реализовать:
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Обязательные требования:
+1. Две таблицы с интерфейсом заполнения (Добавить, Изменить , Удалить).
+   Первая таблица - тип животных.
+   Вторая таблица - список поступивших животных. При заполнении второй таблицы реализовать ссылку на первую (тип животного).
+2. Реализовать один отчет - вывод объявления на экран и на принтер о том, что в приют поступило пропавшее животное.
+3. Приложить скрипт запуска выполненного задания. Если для работы приложения требуется установка дополнительных библиотек, дополнить скрипт запуска 
+   установкой необходимых зависимостей.
+4. Программа должна запускаться на ПК локально под  ОС Windows 10 или Ubuntu 20.04
 
-### How do I get set up? ###
+Опциональные( не обязательные) требования к программе:
+1. Загрузка списка животных в программу из Excel
+2. REST API для добавления/удаления информации о животных в БД
+3. База данных должна работать как встраиваемая БД (в режиме embedded)
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Запуск локально: http://localhost:8088/   -  после запуска проекта
