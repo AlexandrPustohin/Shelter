@@ -26,4 +26,8 @@ public class AnimalType {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
     private List<Animals> animals;
+
+    public AnimalType(String animalType) {
+        this.animalType = animalType;
+    }
 }

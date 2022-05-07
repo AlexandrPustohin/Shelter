@@ -10,15 +10,17 @@
 </head>
 <body>
 <h1>Приют для животных</h1>
-<div>
+<div class="table-responsive table-success table-hover table-bordered" style="height: 250px;">
     <table th:if="${listOfAnimals.size()>0}" class="table">
 
-        <thead class="thead-dark">
+        <thead class="thead-dark" >
         <tr>
             <td>Тип животного</td>
             <td>Пол животного</td>
             <td>Дата поступления</td>
             <td>Приметы</td>
+            <td></td>
+            <td></td>
         </tr>
         </thead>
         <tbody>
@@ -27,11 +29,63 @@
             <td th:text ="${animal.animalGender}"></td>
             <td th:text ="${#calendars.format(animal.dateOfReception,'dd MMMM yyyy')}" />
             <td th:text ="${animal.description}"></td>
-            <td><a class="btn btn-info"    th:href="@{'/update/?id='+${animal.id}}">изменить</a></td>
+            <td><a class="btn btn-info"    th:href="'/edit/'+${animal.id}">изменить</a></td>
             <td><a class="btn btn-info"    th:href="@{'/delete/?id='+${animal.id}}">удалить</a></td>
         </tr>
         </tbody>
     </table>
 </div>
+
+    <div>
+        </br>
+        <h3>Добавить животное</h3>
+        </br>
+    </div>
+        <form  th:action="@{'/addAnimal/'}" modelAttribute="newanimal" method="post">
+            <div class="form-group">
+                <select class="form-control" name="animalType" >
+                    <option th:each="type : ${listOfAnimalsType}"
+                            th:value="${type.id}"
+                            th:utext="${type.animalType}">
+                    </option>
+
+                </select>
+
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="animalGender" >
+                    <option th:each="entry : ${listOfGender.entrySet()}"
+                            th:value="${entry.key}"
+                            th:utext="${entry.value}">
+                    </option>
+
+                </select>
+            </div>
+            <div >
+                <p class="lead">Введите дату:</p>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="date" class="form-control" name="dateOfReception">
+
+            </div>
+            <div >
+                <p class="lead"> Приметы и описание животного:</p>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="description">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Добавить</button>
+        </form>
+
+        <form  class="form-inline" th:action="@{'/addAnimalType/'}" modelAttribute="newtype" method="post">
+               <div >
+                    <p class="lead"> Добавить тип животного:</p>
+               </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input type="text" class="form-control" name="newTypeOfAnimal">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Сохранить</button>
+        </form>
+
 </body>
 </html>

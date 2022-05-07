@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,10 +30,16 @@ public class Animals {
 
     @Column(name = "date_reception")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat (pattern="yyyy-MM-dd")
     private Date dateOfReception;
 
     @Column(name = "description")
     private String description;
 
-
+    public Animals(AnimalType animalType, AnimalGender animalGender, Date dateOfReception, String description) {
+        this.animalType = animalType;
+        this.animalGender = animalGender;
+        this.dateOfReception = dateOfReception;
+        this.description = description;
+    }
 }
