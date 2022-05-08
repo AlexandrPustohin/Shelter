@@ -6,5 +6,5 @@ import ru.service.shelter.entity.AnimalType;
 
 @Repository
 public interface AnimalTypeRepository extends JpaRepository<AnimalType, Long> {
-
+    AnimalType findByAnimalType(String animalType);
 }

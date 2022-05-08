@@ -9,38 +9,37 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/jbootstrap.min.js"></script>
 </head>
 <body>
-<h1>Приют для животных</h1>
-<div class="table-responsive table-success table-hover table-bordered" style="height: 250px;">
-    <table th:if="${listOfAnimals.size()>0}" class="table">
-
-        <thead class="thead-dark" >
+    <h1>Приют для животных</h1>
+    <div class="table-responsive table-success table-hover table-bordered border-secondary"  style="height: 250px;">
+    <table th:if="${listOfAnimals.size()>0}" class="table align-middle" >
+        <thead class="thead-light">
         <tr>
-            <td>Тип животного</td>
-            <td>Пол животного</td>
-            <td>Дата поступления</td>
-            <td>Приметы</td>
-            <td></td>
-            <td></td>
+            <td align="center">Тип животного</td>
+            <td align="center">Пол животного</td>
+            <td align="center">Дата поступления</td>
+            <td align="center">Приметы и описание</td>
+            <td></td><td></td><td></td>
         </tr>
         </thead>
         <tbody>
         <tr th:each="animal : ${listOfAnimals}">
-            <td th:text ="${animal.animalType}"></td>
-            <td th:text ="${animal.animalGender}"></td>
-            <td th:text ="${#calendars.format(animal.dateOfReception,'dd MMMM yyyy')}" />
-            <td th:text ="${animal.description}"></td>
-            <td><a class="btn btn-info"    th:href="'/edit/'+${animal.id}">изменить</a></td>
-            <td><a class="btn btn-info"    th:href="@{'/delete/?id='+${animal.id}}">удалить</a></td>
+            <td class="align-middle" width="5%" th:text ="${animal.animalType}"></td>
+            <td class="align-middle" width="5%" th:text ="${animal.animalGender}"></td>
+            <td class="align-middle" width="5%" th:text ="${#calendars.format(animal.dateOfReception,'dd MMMM yyyy')}" />
+            <td class="align-middle" th:text ="${animal.description}"></td>
+            <td class="align-middle" width="1%"><a class="btn btn-info"    th:href="'/edit/'+${animal.id}">изменить</a></td>
+            <td class="align-middle" width="1%"><a class="btn btn-danger"    th:href="@{'/delete/?id='+${animal.id}}">удалить</a></td>
+            <td class="align-middle" width="1%"><a class="btn btn-warning"    th:href="@{'/card/?id='+${animal.id}}">карточка</a></td>
         </tr>
         </tbody>
     </table>
-</div>
+</div >
 
-    <div>
+    <div class="border border-secondary">
         </br>
         <h3>Добавить животное</h3>
         </br>
-    </div>
+
         <form  th:action="@{'/addAnimal/'}" modelAttribute="newanimal" method="post">
             <div class="form-group">
                 <select class="form-control" name="animalType" >
@@ -86,6 +85,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">Сохранить</button>
         </form>
-
+</div>
 </body>
 </html>

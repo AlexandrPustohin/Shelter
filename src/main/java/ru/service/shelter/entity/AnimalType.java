@@ -1,9 +1,6 @@
 package ru.service.shelter.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class AnimalType {
     @Id
     @Column(name = "id")
@@ -25,7 +23,7 @@ public class AnimalType {
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
-    private List<Animals> animals;
+    private List<Animal> animals;
 
     public AnimalType(String animalType) {
         this.animalType = animalType;

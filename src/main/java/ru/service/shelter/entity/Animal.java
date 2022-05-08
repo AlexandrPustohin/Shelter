@@ -1,9 +1,6 @@
 package ru.service.shelter.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,7 +12,8 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Animals {
+@Builder
+public class Animal {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,11 +33,4 @@ public class Animals {
 
     @Column(name = "description")
     private String description;
-
-    public Animals(AnimalType animalType, AnimalGender animalGender, Date dateOfReception, String description) {
-        this.animalType = animalType;
-        this.animalGender = animalGender;
-        this.dateOfReception = dateOfReception;
-        this.description = description;
-    }
 }
