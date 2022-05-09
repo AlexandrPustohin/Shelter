@@ -56,7 +56,7 @@ public class ShelterController {
     }
 
     @RequestMapping(value =  "/addAnimal" , method=RequestMethod.POST)
-    public String addAnimal (@ModelAttribute("newanimal") NewAnimal newAnimal, HttpServletResponse response) {
+    public String addAnimal (@ModelAttribute("newanimal") NewAnimal newAnimal, HttpServletResponse response) throws ResourceNotFoundException {
         animalService.addNewAnimal(newAnimal);
         return "redirect:/index";
     }

@@ -3,16 +3,15 @@ package ru.service.shelter.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.service.shelter.dto.AnimalDTO;
-import ru.service.shelter.dto.AnimalTypeDTO;
-import ru.service.shelter.dto.FactoryAnimalDTO;
-import ru.service.shelter.dto.FactoryAnimalTypeDTO;
+import ru.service.shelter.dto.*;
+import ru.service.shelter.entity.AnimalType;
 import ru.service.shelter.exseption.ResourceNotFoundException;
 import ru.service.shelter.services.AnimalService;
 import ru.service.shelter.services.AnimalTypeService;
 import ru.service.shelter.services.GenderService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -69,4 +68,27 @@ public class ShelterRestController {
         animalTypeService.addNewType(newType);
         return ResponseEntity.ok(factoryAnimalTypeDTO.createAnimalDTOList(animalTypeService.getAllAnimalTypes()));
     }
+
+    @PostMapping("/addAnimal")
+    public ResponseEntity<?> addNewAnimal(@RequestBody NewAnimal newAnimal) throws ResourceNotFoundException {
+        animalService.addNewAnimal(newAnimal);
+        return ResponseEntity.ok("OK");
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateAnimal(@RequestBody NewAnimal newAnimal) throws ResourceNotFoundException {
+        animalService.updateAnimal(newAnimal);
+        return ResponseEntity.ok("OK");
+    }
+
+    @GetMapping("/getAllType")
+    public ResponseEntity<List<AnimalTypeDTO>> getAllTypes() {
+        return ResponseEntity.ok(factoryAnimalTypeDTO.createAnimalDTOList(animalTypeService.getAllAnimalTypes()));
+    }
+
+    @GetMapping("/getGenderList")
+    public ResponseEntity<Map<String, String>> getGenders() {
+        return ResponseEntity.ok(genderService.getMapGender());
+    }
+
 }

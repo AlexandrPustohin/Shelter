@@ -11,5 +11,5 @@ public interface AnimalService {
     Animal getAnimalById(long id) throws ResourceNotFoundException;
     Animal deleteAnimalById(long id) throws ResourceNotFoundException;
     void updateAnimal(NewAnimal animal) throws ResourceNotFoundException;
-    void addNewAnimal(NewAnimal newAnimal);
+    void addNewAnimal(NewAnimal newAnimal) throws ResourceNotFoundException;
 }

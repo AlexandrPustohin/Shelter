@@ -7,6 +7,7 @@ import ru.service.shelter.dto.FactoryAnimalDTO;
 import ru.service.shelter.dto.NewAnimal;
 import ru.service.shelter.entity.Animal;
 import ru.service.shelter.entity.AnimalGender;
+import ru.service.shelter.entity.AnimalType;
 import ru.service.shelter.exseption.ResourceNotFoundException;
 import ru.service.shelter.repositories.AnimalTypeRepository;
 import ru.service.shelter.repositories.AnimalsRepository;
@@ -66,10 +67,10 @@ public class AnimalsServiceImpl implements AnimalService{
     @Override
     public void updateAnimal(NewAnimal newAnimal) throws ResourceNotFoundException {
         Optional<Animal> animal = Optional.of(animalsRepository.getById(newAnimal.getId()));
-        if(!animal.isPresent()){
-            throw new ResourceNotFoundException("Запись не найдена в БД");
-        }
-        animal.get().setAnimalType(animalTypeRepository.getById(Long.parseLong(newAnimal.getAnimalType())));
+        if(!animal.isPresent()) throw new ResourceNotFoundException("Запись не найдена в БД");
+        Optional<AnimalType> type = Optional.of(animalTypeRepository.getById(Long.parseLong(newAnimal.getAnimalType())));
+        if ((!type.isPresent())) throw new ResourceNotFoundException("Запись не найдена в БД");
+        animal.get().setAnimalType(type.get());
         animal.get().setAnimalGender(Enum.valueOf(AnimalGender.class, newAnimal.getAnimalGender()));
         try {
             animal.get().setDateOfReception(getDate(newAnimal.getDateOfReception()));
@@ -81,9 +82,11 @@ public class AnimalsServiceImpl implements AnimalService{
     }
 
     @Override
-    public void addNewAnimal(NewAnimal newAnimal) {
+    public void addNewAnimal(NewAnimal newAnimal) throws ResourceNotFoundException {
         Animal animal = new Animal();
-        animal.setAnimalType(animalTypeRepository.getById(Long.parseLong(newAnimal.getAnimalType())));
+        Optional<AnimalType> type = Optional.of(animalTypeRepository.getById(Long.parseLong(newAnimal.getAnimalType())));
+        if(!type.isPresent()) throw new ResourceNotFoundException("Запись не найдена в БД");
+        animal.setAnimalType(type.get());
         animal.setAnimalGender(Enum.valueOf(AnimalGender.class, newAnimal.getAnimalGender()));
         try {
             animal.setDateOfReception(getDate(newAnimal.getDateOfReception()));

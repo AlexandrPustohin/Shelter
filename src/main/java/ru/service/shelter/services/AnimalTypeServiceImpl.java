@@ -48,7 +48,7 @@ public class AnimalTypeServiceImpl implements AnimalTypeService{
     @Override
     public AnimalType getTypeByName(String type) throws ResourceNotFoundException {
         Optional<AnimalType> animalType = Optional.of(animalTypeRepository.findByAnimalType(type));
-        if(!animalType.isPresent()) throw new ResourceNotFoundException("Не найдено в БД");
+        if(!animalType.isPresent()) throw new ResourceNotFoundException("Запись не найдена в БД");
         return animalType.get();
     }
 }
