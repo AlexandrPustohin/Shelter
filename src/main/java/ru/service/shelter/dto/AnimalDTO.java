@@ -16,7 +16,6 @@ public class AnimalDTO {
     private Date dateOfReception;
     private String description;
 
-    //для NewAnimal...
     public AnimalDTO(String animalType, String animalGender, Date dateOfReception, String description) {
         this.animalType = animalType;
         this.animalGender = animalGender;

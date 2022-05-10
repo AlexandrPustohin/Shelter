@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.service.shelter.dto.*;
-import ru.service.shelter.entity.AnimalType;
 import ru.service.shelter.exseption.ResourceNotFoundException;
 import ru.service.shelter.services.AnimalService;
 import ru.service.shelter.services.AnimalTypeService;

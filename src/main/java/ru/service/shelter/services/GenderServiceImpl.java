@@ -12,6 +12,6 @@ public class GenderServiceImpl implements GenderService{
     @Override
     public Map<String, String> getMapGender() {
         return  Arrays.stream(AnimalGender.values())
-                .collect(Collectors.toMap(e->e.name(),AnimalGender::getTitle));
+                .collect(Collectors.toMap(e->e.name(), AnimalGender::getTitle));
     }
 }
